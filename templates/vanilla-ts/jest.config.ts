@@ -1,49 +1,29 @@
-import { pathsToModuleNameMapper, JestConfigWithTsJest } from "ts-jest";
-import ts from "typescript";
+import type { Config } from "@jest/types";
 
-const compilerOptionsPaths = (() => {
-  const configFileName = ts.findConfigFile(
-    "../",
-    ts.sys.fileExists,
-    "tsconfig.json"
-  );
-  if (configFileName) {
-    const configFile = ts.readConfigFile(configFileName, ts.sys.readFile);
-    const option = ts.parseJsonConfigFileContent(
-      configFile.config,
-      ts.sys,
-      "./"
-    );
-    return option.raw.compilerOptions.paths;
-  }
-  return {};
-})();
-
-const moduleNameMapper = pathsToModuleNameMapper(compilerOptionsPaths, {
-  prefix: "<rootDir>",
-  "\\.(css|less)$": "identity-obj-proxy",
-});
-
-const jestSetting: JestConfigWithTsJest = {
-  setupFiles: ["jest-canvas-mock", "<rootDir>/.jest/setupEnv.js"],
-  moduleFileExtensions: ["ts", "tsx", "js", "json"],
-  rootDir: ".",
-  roots: ["<rootDir>"],
-  modulePaths: ["<rootDir>"],
-  moduleNameMapper,
-  modulePathIgnorePatterns: ["dist"],
-  testRegex: ".spec|.test.ts$",
-  transform: {
-    "^.+.ts$": [
-      "ts-jest",
-      {
-        tsconfig: "tsconfig.json",
-        compiler: "typescript",
-      },
-    ],
+const config: Config.InitialOptions = {
+  globals: {
+    "ts-jest": {
+      tsconfig: "tsconfig.json",
+      diagnostics: true,
+    },
+    NODE_ENV: "test",
   },
-  coverageReporters: ["html", "text", "text-summary", "cobertura"],
+  setupFiles: ["jest-canvas-mock"],
+  moduleDirectories: ["node_modules", "src"],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
+  modulePathIgnorePatterns: ["dist", "build"],
+  moduleNameMapper: {
+    "src/(.*)": "<rootDir>/src/$1",
+    "contexts(.*)$": "<rootDir>/src/contexts/$1",
+    "\\.(css|less)$": "identity-obj-proxy",
+  },
+  transform: {
+    "^.+\\.ts$": "ts-jest",
+    "^.+\\.tsx$": "ts-jest",
+  },
+  globalSetup: "./.jest/setupEnv.js",
+  verbose: true,
   testEnvironment: "jsdom",
 };
 
-export default jestSetting;
+export default config;
