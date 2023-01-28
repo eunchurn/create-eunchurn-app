@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@eunchurn/eslint-config": "^0.1.12",
-    "@eunchurn/prettier-config": "^0.0.5",
+    "@eunchurn/prettier-config": "^0.0.6",
     "@types/node": "18.11.18",
     "husky": "8.0.3",
     "lint-staged": "13.1.0",
