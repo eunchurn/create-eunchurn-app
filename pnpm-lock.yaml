@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@eunchurn/eslint-config': ^0.1.12
-  '@eunchurn/prettier-config': ^0.0.5
+  '@eunchurn/prettier-config': ^0.0.6
   '@types/node': 18.11.18
   create-create-app: 7.3.0
   husky: 8.0.3
@@ -19,7 +19,7 @@ dependencies:
 
 devDependencies:
   '@eunchurn/eslint-config': 0.1.12_uhxzhaxu465qzax2tftpee5s7i
-  '@eunchurn/prettier-config': 0.0.5_prettier@2.8.3
+  '@eunchurn/prettier-config': 0.0.6_prettier@2.8.3
   '@types/node': 18.11.18
   husky: 8.0.3
   lint-staged: 13.1.0
@@ -112,10 +112,10 @@ packages:
       - typescript
     dev: true
 
-  /@eunchurn/prettier-config/0.0.5_prettier@2.8.3:
-    resolution: {integrity: sha512-kGPxdNvRDFR1ypnq4wpZ2Wja0b0Cxri5adVHdDajDto4p1e88gnTATDK9+i2MloR5sie2YJ8zBp4XXuxzO+W1A==}
+  /@eunchurn/prettier-config/0.0.6_prettier@2.8.3:
+    resolution: {integrity: sha512-tWs1h432lYjgYEvFBjlZ73zyE3ldvC5O4Mfs8WIpF/qm/iQt7bGd7kz6enM3jjArph0Jw9rhlvnEPKXWQWqBkA==}
     peerDependencies:
-      prettier: ^2.8.2
+      prettier: '>= 2.8.3'
     dependencies:
       prettier: 2.8.3
     dev: true
